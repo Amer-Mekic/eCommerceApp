@@ -15,8 +15,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       href={"/products/" + product.id}
       className="card w-full bg-base-200 hover:shadow-xl transition-shadow"
     >
-        <figure>
-            <Image src={product.imageUrl} alt={product.name} width={800} height={400} className="h-48 object-cover"/>
+        <figure className="px-2 pt-2">
+            <Image src={product.imageUrl} alt={product.name} width={800} height={500} className="h-48 object-fill rounded-xl"/>
         </figure>
         <div className="card-body">
             <h2 className="card-title font-bold">{product.name}</h2>

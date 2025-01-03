@@ -4,6 +4,9 @@ import logo from '@/assets/amazon.png'
 import { redirect } from "next/navigation";
 import { getCart } from "@/lib/db/cart";
 import ShoppingCartButton from "./ShoppingCartButton";
+import UserMenuButton from "./UserMenuButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 async function searchProduct(formData: FormData){
     'use server'
@@ -17,6 +20,7 @@ async function searchProduct(formData: FormData){
 }
 
 export default async function Navbar(){
+    const session = await getServerSession(authOptions)
     const cart = await getCart();
     return(
         <div className="bg-black">
@@ -31,6 +35,7 @@ export default async function Navbar(){
                         </div>
                     </form>
                     <ShoppingCartButton cart={cart}></ShoppingCartButton>
+                    <UserMenuButton session={session}></UserMenuButton>
                 </div>                
             </div>
         </div>

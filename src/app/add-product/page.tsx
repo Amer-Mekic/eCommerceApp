@@ -1,10 +1,17 @@
 import FormSubmitButton from "@/components/FormSubmitButton";
 import { prisma } from "@/lib/db/prisma";
 import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 
 // define function addProduct to be server action and passed in form's action attribute.
 async function addProduct(formData: FormData) {
     "use server"; // server action, we are inserting new product into database 
+
+    const session = await getServerSession(authOptions)
+    // if no session, not logged in, can't add product
+    if(!session)
+      redirect("/api/auth/signin?callbackUrl=/add-product") // callbackUrl to redirect to add-product after login
 
     const name = formData.get("name")?.toString();
     const description = formData.get("description")?.toString();
@@ -24,7 +31,12 @@ async function addProduct(formData: FormData) {
     redirect("/");
 }
 
-export default function addProductPage() {
+export default async function addProductPage() {
+  const session = await getServerSession(authOptions)
+  if(!session){
+    redirect("/api/auth/signin?callbackUrl=/add-product")
+  }
+
   return (
     <div>
       <h1 className="text-lg mb-3 font-bold">Add Product</h1>

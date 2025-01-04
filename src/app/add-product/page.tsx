@@ -38,8 +38,9 @@ export default async function addProductPage() {
   }
 
   return (
-    <div>
-      <h1 className="text-lg mb-3 font-bold">Add Product</h1>
+    <div className="flex justify-center items-center h-screen">
+      <div className="bg-base-200 p-10 rounded-lg shadow-md">
+        <h1 className="text-xl mb-3 font-bold">Add Product</h1>
       <form action={addProduct}>
         <input
           className="mb-3 w-full input input-bordered"
@@ -71,6 +72,7 @@ export default async function addProductPage() {
           Add Product
         </FormSubmitButton>
       </form>
+      </div>
     </div>
   );
 }

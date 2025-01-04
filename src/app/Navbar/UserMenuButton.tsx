@@ -12,7 +12,7 @@ export default function UserMenuButton({ session }: UserMenuButtonProps) {
   const user = session?.user;
 
   return (
-    <div className="dropdown dropdown-end bg-white rounded-full">
+    <div className="dropdown dropdown-hover bg-white rounded-full">
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         {user ? (
           <Image
@@ -40,7 +40,7 @@ export default function UserMenuButton({ session }: UserMenuButtonProps) {
         )}
       </label>
       <ul
-        className="dropdown-content menu rounded-box menu-sm z-30 mt-1 w-52 bg-base-200 p-2 shadow"
+        className="dropdown-content menu rounded-box menu-sm z-30 m-0 w-max bg-base-200 p-2 shadow"
         tabIndex={0}
       >
         <li>

@@ -21,8 +21,8 @@ export default async function Home(props: HomeProps) {
   // fetch all products from database and order them by id in descending order (higher id = later creation)
   const products = await prisma.product.findMany({
     orderBy:{id: "desc"},
-    skip:(currentPage-1)*pageSize,
-    take:pageSize 
+    skip:(currentPage-1)*pageSize, // if page = 2, this will skip (2-1)*6 items (6), which is 1 whole page
+    take:pageSize // take this many items (6) to display
   })
   return (
     <div className="flex flex-col items-center">

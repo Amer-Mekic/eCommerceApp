@@ -1,7 +1,7 @@
 import FormSubmitButton from "@/components/FormSubmitButton";
 import { prisma } from "@/lib/db/prisma";
 import { redirect } from "next/navigation";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import  authOptions  from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
 // define function addProduct to be server action and passed in form's action attribute.

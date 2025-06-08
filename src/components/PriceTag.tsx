@@ -6,7 +6,7 @@ interface PriceTagProps{
     className?:string,
 }
 
-export default function priceTag({price, className} : PriceTagProps){
+export default function PriceTag({price, className} : PriceTagProps){
     return (
         <span className={`badge bg-slate-200 font-bold ${className}`}>{formatPrice(price)}</span>
     )

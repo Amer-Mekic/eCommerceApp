@@ -6,10 +6,8 @@ import { Metadata } from "next";
 import { cache } from "react";
 import AddToCartButton from "./AddToCartButton";
 import { incrementProductQuantity } from "./actions";
-import { HfInference } from "@huggingface/inference";
 import dotenv from 'dotenv'
 dotenv.config()
-const inference = new HfInference(process.env.HF_AUTH_TOKEN);
 
 interface ProductPageProps {
   params: Promise<{
@@ -47,14 +45,7 @@ export default async function ProductPage(props: ProductPageProps) {
   } = params;
 
   const product = await getProduct(id);
-  const imageUrl = product.imageUrl
-  const resp = await fetch(imageUrl)
-  const imageBlob = await resp.blob()
-  const result = await inference.imageToText({
-    data: imageBlob,
-    model: 'nlpconnect/vit-gpt2-image-captioning',  
-  })
-  console.log(result)
+
   return (
     <div className="flex justify-center items-center min-h-screen"> {/* Center content in the viewport */}
       <div className="bg-base-200 p-10 rounded-lg shadow-md"> {/* Background with padding */}
@@ -70,7 +61,7 @@ export default async function ProductPage(props: ProductPageProps) {
           <div>
             <h1 className="text-5xl font-bold">{product.name}</h1>
             <PriceTag price={product.price} className="mt-5 text-lg"></PriceTag>
-            <p className="py-6">{result.generated_text}</p>
+            <p className="py-6">{product.description}</p>
             <AddToCartButton productId={product.id} incrementProductQuantity={incrementProductQuantity}></AddToCartButton>
           </div>
         </div>

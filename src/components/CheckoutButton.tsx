@@ -4,20 +4,19 @@ import { useState } from "react";
 
 interface CheckoutButtonProps {
     className?: string;
-    total:number;
     children?: React.ReactNode;
     cartItems: CartItem[];
 }
 
-export default function CheckoutButton({ cartItems, total , className, children} : CheckoutButtonProps) {
+export default function CheckoutButton({ cartItems, className, children} : CheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
     setLoading(true);
-    const res = await fetch("../api/create-checkout-session.js", {
+    const res = await fetch("/api/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cartItems, total }),
+      body: JSON.stringify({ cartItems }),
     });
 
     const data = await res.json();

@@ -11,7 +11,6 @@ export const metadata = {
 export default async function CartPage() {
     const cart = await getCart();
     const tot = formatPrice(cart?.subtotal || 0);
-    const subtotal = cart?.subtotal || 0;
 return(
     <div>
         <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
@@ -23,7 +22,7 @@ return(
             <p className="mb-3 font-bold">
                 Total: {tot}
             </p>
-            <CheckoutButton cartItems={cart?.items || []} className="btn btn-primary sm:btn-sm md:btn-md lg:btn-lg" total={subtotal}>Go To Checkout</CheckoutButton>
+            <CheckoutButton cartItems={cart?.items || []} className="btn btn-primary sm:btn-sm md:btn-md lg:btn-lg">Go To Checkout</CheckoutButton>
         </div>
     </div>
 )

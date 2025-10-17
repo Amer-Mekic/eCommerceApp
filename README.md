@@ -5,7 +5,7 @@ This is a full-stack e-commerce application built with Next.js, TypeScript, Mong
 ### Live Demo
 
 Visit the deployed app here:  
-[https://e-commerce-tlfqbzlkj-amer-ms-projects.vercel.app/](https://e-commerce-tlfqbzlkj-amer-ms-projects.vercel.app/)
+[https://e-commerce-app-one-eta-25.vercel.app/](https://e-commerce-app-one-eta-25.vercel.app/)
 
 ### Tech Stack
 
